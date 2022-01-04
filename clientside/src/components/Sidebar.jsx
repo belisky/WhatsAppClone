@@ -8,7 +8,7 @@ const Sidebar = ({ id }) => {
     const CONTACTS_KEY = 'contacts'
     const [activeKey,setActiveKey]=useState(CONVERSATIONS_KEY)
     return (
-        <div style={{width:'250px'}} className='d-flex flex-column' >
+        <div style={{width:'250px',height:'100vh'}} className='d-flex flex-column' >
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant='tabs' className='justify-content-center' >
                     <Nav.Item>
@@ -18,7 +18,7 @@ const Sidebar = ({ id }) => {
                         <Nav.Link eventKey={CONTACTS_KEY}>Contacts</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <Tab.Content>
+                <Tab.Content className="border-right overflow-auto flex-grow-1">
                     <Tab.Pane eventKey={CONVERSATIONS_KEY}>
                         <Conversations/>
                     </Tab.Pane>
@@ -26,6 +26,9 @@ const Sidebar = ({ id }) => {
                         <Contacts/>
                     </Tab.Pane>
                 </Tab.Content>
+                <div className='p-2 border-top border-right small'>
+                    Your Id: <span className='text-muted'>{id}</span>
+                </div>
          </Tab.Container>
         </div>
     )
