@@ -1,10 +1,11 @@
 import React from 'react'
+import { Modal } from 'react-bootstrap'
 
 const NewConversationsModal = () => {
     return (
-        <div>
-            modals
-        </div>
+        <Modal.Header closeButton>
+            Conversations
+         </Modal.Header>
     )
 }
 

@@ -4,10 +4,15 @@ import useLocalStorage from './Hooks/useLocalStorage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-   const [id,setId]=useLocalStorage('id')
+  const [id, setId] = useLocalStorage('id')
+  const dashboard = (
+    <ContactsProvider>
+      <Dashboard id={id}/>
+    </ContactsProvider>
+  )
   return (
     <>
-      {id ? <Dashboard id={id} />:
+      {id ?  dashboard:
      <Login onIdSubmit={setId} />
       }
    
