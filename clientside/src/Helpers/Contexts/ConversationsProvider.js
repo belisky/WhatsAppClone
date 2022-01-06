@@ -40,8 +40,8 @@ const ConversationsProvider = ({id, children }) => {
 
          })
     }
-    const sendMessage = (recipient, text) => {
-        addMessageToConversation({recipient,text,sender:id})
+    const sendMessage = (recipients, text) => {
+        addMessageToConversation({ recipients, text, sender: id })
     }
 
     const formattedConversations = conversations.map((conversation, index) => {
@@ -52,8 +52,18 @@ const ConversationsProvider = ({id, children }) => {
             const name = (contact && contact.name) || recipient
             return { id: recipient, name }
         })
+
+        const messages = conversation.messages.map(message => {
+            const contact = contacts.find(contact => {
+                return contact.id === message.sender
+            })
+            const name = (contact && contact.name) || message.sender
+            const fromMe = id === message.sender
+            return { ...message, senderName: name, fromMe }
+        })
+
         const selected = index === selectedConversationIndex
-        return { ...conversation, recipients, selected }
+        return { ...conversation, recipients, selected,messages }
     })
     const value = {
         conversations: formattedConversations,
@@ -68,7 +78,7 @@ const ConversationsProvider = ({id, children }) => {
         </ConversationsContext.Provider>
     )
 }
-function arrayEquality(a, b) {
+const arrayEquality = (a, b) => {
     if (a.length !== b.length) return false
     
     a.sort()
