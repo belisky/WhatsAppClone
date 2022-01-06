@@ -27,19 +27,18 @@ const NewConversationsModal = ({closeModal}) => {
     return (
         <>
             <Modal.Header closeButton>
-                Create Contact
+                New Conversation
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={ handleSubmit}>
                     {contacts.map(contact => (
                         <Form.Group controlId={contact.id} key={contact.id}>
                             <Form.Check type='checkbox' value={selectedContactIds.includes(contact.id)}
                                 label={contact.name}
-                                onChange={() => (handleCheckboxChange(contact.id))} />
+                                onChange={()=> handleCheckboxChange(contact.id)} />
                         </Form.Group>
                     ))}
                     <Button type='submit'>Create</Button>
-
                 </Form>
             </Modal.Body>
         </>

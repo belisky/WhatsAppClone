@@ -6,9 +6,9 @@ export const useConversations = () => {
     return useContext(ConversationsContext)
 }
 const ConversationsProvider = ({id, children }) => {
-    const [conversations, setConversations] = useLocalStorage('conversations', [])
-    const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
-    const { contacts } = useContacts()
+    const [conversations, setConversations] = useLocalStorage('conversations', []); 
+    const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
+    const { contacts } = useContacts();
     const createConversation = (recipients) => {
         setConversations(prevConversations => {
             return [...prevConversations, { recipients, messages:[]}]
@@ -23,7 +23,7 @@ const ConversationsProvider = ({id, children }) => {
                 if (arrayEquality(conversation.recipients, recipients)) {
                     madeChange = true
                     return {
-                        ...conversation,messages:[...conversation.messagges,newMessage]
+                        ...conversation,messages:[...conversation.messages,newMessage]
                     }
                 }
                return conversation 
@@ -40,7 +40,7 @@ const ConversationsProvider = ({id, children }) => {
 
          })
     }
-    const sendMessage = (recipient, text, sender) => {
+    const sendMessage = (recipient, text) => {
         addMessageToConversation({recipient,text,sender:id})
     }
 
