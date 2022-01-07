@@ -1,5 +1,5 @@
 import React,{useContext,useState,useEffect} from 'react'
-import io from 'socket.io-client'
+import {io} from 'socket.io-client'
 
 
 const SocketContext=React.createContext()
@@ -10,13 +10,13 @@ export const SocketProvider = ({id, children}) => {
     const [socket, setSocket] = useState()
 
     useEffect(() => {
-        const newSocket = io("http://localhost:3000",
+        const newSocket = io("http://localhost:5000",
             { query: { id } }
         );
         console.log('newSocket=>'+newSocket)
         setSocket(newSocket);     
         return ()=>newSocket.close()
-    }, [id,setSocket])
+    }, [id ])
     console.log(socket)
     return (
         <SocketContext.Provider value={socket}>
