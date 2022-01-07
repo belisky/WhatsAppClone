@@ -10,7 +10,8 @@ const ConversationsProvider = ({id, children }) => {
     const [conversations, setConversations] = useLocalStorage('conversations', []); 
     const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
     const { contacts } = useContacts();
-    const {socket}=useSocket()
+    const socket = useSocket();
+     
     const createConversation = (recipients) => {
         setConversations(prevConversations => {
             return [...prevConversations, { recipients, messages:[]}]
