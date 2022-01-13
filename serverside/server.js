@@ -1,13 +1,18 @@
-const{createServer}=require('http')
-const {Server}=require('socket.io')
-const httpServer = createServer();
-const io =  new Server (httpServer,{
+// const{createServer}=require('http')
+// const {Server}=require('socket.io')
+// const httpServer = createServer();
+// const io =  new Server (httpServer,{
+//     cors: {
+//         origin: "http://localhost:5000",
+//         methods: ["GET", "POST"]
+//     }
+// })
+// io.listen(3000)
+const io = require("socket.io")(3000, {
     cors: {
-        origin: "http://localhost:5000",
-        methods: ["GET", "POST"]
+        origin:["http://localhost:3001"], 
     }
-}) 
-httpServer.listen(3000)
+} )
 
 io.on('connection', socket => {
     console.log("connected")
