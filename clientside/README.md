@@ -3,11 +3,14 @@
  # Features
  ### conversations pane.
  ### contacts pane.
+ 
 
  # New Stuff learned.
+ ### useCallback hook to prevent unnecessary rerenders.
  ### Context Api.
- ### socket.io.
+ ### socket.io the react way.
  ### React Bootstrap components for ui.
+ ### Using localstorage with react
 
  # Credits.
  ### Webdevsimplified on youtube.
