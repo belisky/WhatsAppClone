@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "client":"npm start --prefix clientside",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefic clientside && npm run build --prefix clientside"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Fiawornu Nobel",
+  "license": "KNUST",
   "dependencies": {
     "express": "^4.17.3",
-    "path": "^0.12.7",
     "socket.io": "^4.4.1"
   },
   "devDependencies": {

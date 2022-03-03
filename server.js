@@ -1,5 +1,10 @@
- 
-const io = require("socket.io")(5000, {
+const path = require('path');
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app)
+const port = process.env.PORT || 5000;
+
+const io = require("socket.io")(server, {
     cors: {
         origin:["*"], 
     }
@@ -20,3 +25,11 @@ io.on('connection', socket => {
         })
     })
 })
+
+server.listen(port)
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('clientside/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'clientside', 'build', 'index.html'));
+    })
+}
