@@ -10,7 +10,7 @@
   "scripts": {
     "devStart": "nodemon server.js",
     "client":"npm start --prefix clientside",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefic clientside && npm run build --prefix clientside"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clientside && npm run build --prefix clientside"
   },
   "keywords": [],
   "author": "Fiawornu Nobel",
