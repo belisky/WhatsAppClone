@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       {id ?  dashboard:
-     <Login onIdSubmit={setId} />
+      (<Login onIdSubmit={setId} />)
       }
    
     </>
