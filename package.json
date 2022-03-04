@@ -8,14 +8,16 @@
     "npm": "6.14.13"
   },
   "scripts": {
+    "start": "node server.js",
     "devStart": "nodemon server.js",
-    "client":"npm start --prefix clientside",
+    "client": "npm start --prefix clientside",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix clientside && npm run build --prefix clientside"
   },
   "keywords": [],
   "author": "Fiawornu Nobel",
-  "license": "KNUST",
+  "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "socket.io": "^4.4.1"
   },

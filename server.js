@@ -1,14 +1,26 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app)
+const httpServer = require('http').createServer(app)
 const port = process.env.PORT || 5000;
+const cors = require('cors');
+const { Server } = require("socket.io");
 
-const io = require("socket.io")(server, {
+
+const io = new Server(httpServer, {
     cors: {
-        origin:["*"], 
+        origin:'*'
     }
-} )
+})
+ 
+ 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(__dirname+'/clientside/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'clientside', 'build', 'index.html'));
+    })
+}
+ 
 
 io.on('connection', socket => {
     console.log("connected")
@@ -26,10 +38,4 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(port)
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('clientside/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'clientside', 'build', 'index.html'));
-    })
-}
+httpServer.listen(port)
